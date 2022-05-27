@@ -1,2 +1,9 @@
 # calendar-sofkau-group
 DOJO-reactiva-SofkaU
+
+
+# PARTICIPANTES
+
+1: MANUEL GUILLERMO PINEDA
+2:JUAN PABLO ALLIN 
+3:JHON STIVEN GRANADA A
