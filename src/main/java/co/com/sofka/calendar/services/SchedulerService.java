@@ -35,11 +35,6 @@ public class SchedulerService {
                 .map(toProgramDate(startDate,endDate,pivot[0],index))
                 .switchIfEmpty(Flux.error(new RuntimeException("El programa academico no existe")));
     }
-    //<Optional.ofNullable(program)
-    //                .map(this::getDurationOf)
-    //                .orElseThrow(() -> new RuntimeException("El programa academnico no existe"))
-    //                .map(toProgramDate(startDate, endDate, pivot[0], index))
-    //                .collect(Collectors.toList());
 
     //No tocar
     private Function<String, ProgramDate> toProgramDate(LocalDate startDate, AtomicReference<LocalDate> endDate, AtomicInteger atomicInteger, int[] index) {

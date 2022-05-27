@@ -49,6 +49,10 @@ class SchedulerServiceTest {
                 .expectComplete()
                 .verify();
 
+        StepVerifier.create(Flux.just(getSnapResult()))//TODO: hacer de otro modo - Using StepVerifier
+                .expectNext(new Gson().toJson(response))
+                .expectComplete();
+
         Mockito.verify(repository).findById(programId);
     }
 
