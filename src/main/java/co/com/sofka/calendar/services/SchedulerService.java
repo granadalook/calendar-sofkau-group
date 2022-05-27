@@ -29,12 +29,11 @@ public class SchedulerService {
 
         //TODO: debe pasarlo a reactivo, no puede trabaja elementos bloqueantes
         //TODO: trabajar el map reactivo y no deben colectar
-        var program = programRepository.findById(programId).block();
-        return Optional.ofNullable(program)
-                .map(this::getDurationOf)
-                .orElseThrow(() -> new RuntimeException("El programa academnico no existe"))
-                .map(toProgramDate(startDate, endDate, pivot[0], index))
-                .collect(Collectors.toList());
+        var program = programRepository.findById(programId);
+        return program
+                .flatMapMany(programa -> Flux.fromStream(getDurationOf(programa)))
+                .map(toProgramDate(startDate,endDate,pivot[0],index))
+                .switchIfEmpty(Flux.error(new RuntimeException("El programa academico no existe")));
     }
     //<Optional.ofNullable(program)
     //                .map(this::getDurationOf)
